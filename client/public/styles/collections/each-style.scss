@@ -1,0 +1,52 @@
+@use "./sliding-gallery-component.scss";
+@use "../others/colors.scss" as colors;
+
+.each-style-info {
+    margin: 5px auto;
+    width: 97%;
+
+
+    .info {
+        margin: 5px 0;
+
+        h3 {
+            color: colors.$purple;
+            margin: 5px 0;
+        }
+
+        .categories {
+            text-transform: capitalize;
+            font-size: .9em;
+        }
+
+        .description {
+            margin: 5px 0;
+           
+        }
+    }
+
+    .btn-holder {
+        display: flex;
+        justify-content: space-around;
+
+        .btn {
+            width: max-content;
+            padding: 5px 15px;
+            text-decoration: none;
+            // text-align: center;
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            color: colors.$white;
+            background-color: colors.$purple;
+            border: none;
+            .icon{
+                margin-right: 5px;
+            }
+            &:hover{
+                transform: scale(1.04);
+                cursor: pointer;
+            }
+        }
+    }
+}

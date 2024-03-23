@@ -1,0 +1,49 @@
+@use "../others/colors.scss" as colors;
+
+.collections-page {
+    margin: 10px auto 0;
+    display: flex;
+    overflow-x: hidden;
+    width: 97%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+
+    .each-style {
+        height: 300px;
+        // background-color: red;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-decoration: none;
+        margin: 5px 0;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+
+
+        h3 {
+            font-size: .8em;
+            color: colors.$purple;
+            text-decoration: none;
+            text-align: center;
+            text-transform: lowercase;
+        }
+    }
+
+    @media (max-width:760px) {
+        .each-style {
+            width: 47%;
+            border-bottom: 2px solid colors.$purple;
+            // border-left: 2px solid colors.$purple;
+            // border-radius: 5px;
+
+            img {
+                width: 97%
+            }
+        }
+    }
+}

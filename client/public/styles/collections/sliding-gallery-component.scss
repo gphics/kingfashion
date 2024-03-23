@@ -1,0 +1,39 @@
+@use "../others/colors.scss" as colors;
+.sliding-gallery-component {
+    margin: 10px auto;
+    width: 96%;
+    max-width: 400px;
+    height: 70%;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .style-images-holder {
+        width: 97%;
+        height: 88%;
+        margin-bottom: 2%;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+       .style-img {
+            width: 100%;
+            align-self: center;
+            flex:0 0 auto;
+            height: 100%;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    }
+
+    .controls{
+        .control-btn{
+            color:colors.$purple;
+            transform: scale(1.5);
+            margin:2px 15px;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,103 @@
+@use "./colors.scss" as colors;
+
+.gallery-component {
+    width: 98%;
+    margin: 5px auto;
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .slides {
+        text-decoration: none;
+        color: colors.$black;
+        display: flex;
+        flex: 0 0 auto;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        align-items: center;
+        justify-content: space-around;
+
+        img {
+            width: 47%;
+            max-width: 350px;
+            height: 70%;
+            &:hover {
+                transform: scale(1.005);
+            }
+        }
+
+        article {
+            overflow: hidden;
+            width: 47%;
+            display: flex;
+            flex-direction: column;
+            h3 {
+                color: colors.$purple;
+                margin: 5px 0;
+                width: 100%;
+            }
+            p {
+                text-align: left;
+                font-size: .8em;
+                flex: 1 1 auto;
+                overflow: hidden;
+            }
+
+
+        }
+
+        @media (max-width:760px) {
+            flex-direction: column;
+            height: 450px;
+
+            img {
+                width: 97%;
+            }
+
+            article {
+                height: 30%;;
+                width: 97%;
+                text-align: center;
+                h3{
+                    margin:3px auto;
+                    font-size: .8em;
+                }
+                p {
+                    display: none;
+                }
+            }
+        }
+    }
+
+ 
+    .control {
+        display: flex;
+        position: absolute;
+        top: 94%;
+        margin: 0 auto;
+        height: 20px;
+        align-items: center;
+        z-index: 400;
+        width: 50%;
+        justify-content: space-around;
+
+        button {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            border-radius: 100%;
+            background-color: colors.$purple;
+            border: none;
+            &.active{
+                background-color: colors.$black;
+                transform: scale(1.2);
+            }
+        }
+    }
+}

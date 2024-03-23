@@ -1,0 +1,48 @@
+@use "./colors.scss" as colors;
+
+.footer-component {
+    background-color: colors.$purple;
+    margin-top: 5px;
+    height: 95px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    img {
+        width: 130px;
+        margin: 0;
+        // background-color: red;
+        height: 30px;
+    }
+
+    p {
+        // margin:5px 0;
+        height: 30px;
+        font-size: .9em;
+        color: colors.$white;
+
+        @media (max-width:760px) {
+            font-size: .7em;
+        }
+    }
+
+    .icons-holder {
+        // margin: 10px 0;
+        // 
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        width: 100px;
+
+        .icon {
+
+            transform: scale(1.5);
+            color: colors.$white;
+
+            &:hover {
+                transform: scale(1.7);
+            }
+        }
+    }
+}

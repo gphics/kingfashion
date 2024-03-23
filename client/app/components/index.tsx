@@ -1,5 +1,4 @@
-import Second from "./Second";
-import Third from "./Third";
+
 import First from "./First";
-const landingPageComponents = { Second, Third, First };
+const landingPageComponents = {First };
 export default landingPageComponents;

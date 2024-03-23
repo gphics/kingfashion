@@ -40,7 +40,7 @@ export default class styleController {
 
   @Post("/create")
   async create(@Req() req: Request): Promise<returnType> {
-    const { price, description, categories, name } = req.body;
+    const { price, description, categories, name, images } = req.body;
     if (!price || !description || !name || !categories) {
       throw new HttpException("all fields must be supplied", 400);
     }
@@ -49,6 +49,7 @@ export default class styleController {
       description,
       categories,
       price,
+      images
     });
     return { err: null, response: { message: "style created" } };
   }

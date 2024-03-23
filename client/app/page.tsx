@@ -1,6 +1,6 @@
 import landingPageComponents from "./components";
 function page() {
-  const { First, Second, Third } = landingPageComponents;
+  const { First} = landingPageComponents;
   return (
     <main>
       <First />

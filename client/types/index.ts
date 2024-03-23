@@ -24,7 +24,10 @@ export type styleObjectType = {
 };
 
 
-
+export type resultType = {
+    err: null | string,
+    response: { data?: Object | Array<styleObjectType>, message?: string }
+}
 
 export interface stylesStateInterface {
     styles: styleObjectType[],

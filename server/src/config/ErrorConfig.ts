@@ -8,7 +8,6 @@ import { Response } from "express";
 @Catch(HttpException)
 export default class ErrorConfig implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
-    console.log(exception);
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const message = exception.message;

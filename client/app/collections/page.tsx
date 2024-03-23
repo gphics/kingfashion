@@ -1,21 +1,30 @@
-import { styleObjectType } from "@/types";
+import { resultType, styleObjectType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaNairaSign } from "react-icons/fa6";
-async function getStyles(): Promise<styleObjectType[]> {
+
+async function getStyles(): Promise<resultType> {
   const first = await fetch(`${process.env.SERVER_URL}/styles`);
   const second = await first.json();
-  return second.response.data;
+  return second;
 }
 
 async function CollectionsPage() {
-  const styles = await getStyles();
-  const h = [...styles, ...styles, ...styles];
+  const result: resultType = await getStyles();
+  if (result.err) {
+    return (
+      <main>
+        <h2> {result.err} </h2>
+      </main>
+    );
+  }
+  const styles = result.response.data as Array<styleObjectType>;
+
   //   console.log(styles);
   return (
     <main className="collections-page">
       {styles &&
-        h.map((style: styleObjectType, index: number) => {
+        styles.map((style: styleObjectType, index: number) => {
           //   @ts-ignore
           return <Each style={style} key={index} />;
         })}
@@ -35,7 +44,7 @@ function Each({ style }: { style: styleObjectType }) {
       <h3> {name} </h3>
       <h3>
         {" "}
-        <FaNairaSign className="naira-icon"/>
+        <FaNairaSign className="naira-icon" />
         {price}{" "}
       </h3>
     </Link>

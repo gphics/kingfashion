@@ -32,5 +32,7 @@ export type resultType = {
 export interface stylesStateInterface {
     styles: styleObjectType[],
     recentStyles: galleryObjectType[],
-    currentStyle: styleObjectType
+    currentStyle: styleObjectType,
+    cartItems: styleObjectType[],
+  
 }

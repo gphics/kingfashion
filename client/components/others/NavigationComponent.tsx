@@ -16,7 +16,7 @@ function NavigationComponent() {
   const linkArr: linkArrType[] = [
     { name: "Home", href: "/" },
     { name: "Collections", href: "/collections" },
-    { name: "Contact", href: "/contact" },
+    // { name: "Contact", href: "/contact" },
     { name: "Cart", href: "/cart" },
   ];
   // getting the current path

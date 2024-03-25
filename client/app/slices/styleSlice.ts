@@ -14,7 +14,8 @@ const initialState: stylesStateInterface = {
         __v: "",
         _id: ""
 
-    }
+    },
+    cartItems: [],
 }
 const slice = createSlice({
     name: "styleSlice",
@@ -28,6 +29,9 @@ const slice = createSlice({
         },
         addCurrentStyle(state: stylesStateInterface, action) {
             state.currentStyle = action.payload
+        },
+        updateCartItems(state: stylesStateInterface, action: any) {
+            state.cartItems = action.payload
         }
     }
 })

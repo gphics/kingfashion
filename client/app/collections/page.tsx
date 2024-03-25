@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaNairaSign } from "react-icons/fa6";
 
+
 async function getStyles(): Promise<resultType> {
   const first = await fetch(`${process.env.SERVER_URL}/styles`);
   const second = await first.json();
@@ -20,14 +21,14 @@ async function CollectionsPage() {
   }
   const styles = result.response.data as Array<styleObjectType>;
 
-  //   console.log(styles);
+  
   return (
     <main className="collections-page">
-      {styles &&
-        styles.map((style: styleObjectType, index: number) => {
-          //   @ts-ignore
-          return <Each style={style} key={index} />;
-        })}
+        {styles &&
+          styles.map((style: styleObjectType, index: number) => {
+            //   @ts-ignore
+            return <Each style={style} key={index} />;
+          })}
     </main>
   );
 }

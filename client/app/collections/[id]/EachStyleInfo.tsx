@@ -1,15 +1,20 @@
+"use client"
 import { FaNairaSign } from "react-icons/fa6";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import generateWhatsappLink from "../deps/generateWhatsappLink";
 import { IoLogoWhatsapp } from "react-icons/io";
+// import CartStorage from "@/utils";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import cookieStorage from "@/utils/cookieStorage";
 function EachStyleInfo() {
   const styleLocation = window.location.href;
-
+  const router = useRouter();
   // @ts-ignore
   const { currentStyle } = useSelector((state) => state.stylesSliceReducer);
-  const { price, name, description, categories } = currentStyle;
+  const { price, name, description, categories, _id } = currentStyle;
   const categoriesLength = categories.length;
   const trans = categories.map((elem: any, i: number) => {
     if (i === categoriesLength - 1) {
@@ -23,6 +28,14 @@ function EachStyleInfo() {
 
     Here's the link: ${styleLocation}
     `;
+  function addToCart() {
+    const res = cookieStorage.addItem(_id)
+    if (res === "done") {
+      router.push("/cart");
+      return;
+    } 
+    toast.error(res);
+  }
   const whatsappLink: string = generateWhatsappLink(message);
   return (
     <div className="each-style-info">
@@ -45,9 +58,9 @@ function EachStyleInfo() {
         <Link className="btn" target="_blank" href={whatsappLink}>
           <IoLogoWhatsapp className="icon" /> Buy Now
         </Link>
-        <button type="button" className="btn">
+        <button type="button" className="btn" onClick={addToCart}>
           {" "}
-          <FaShoppingCart  className="icon" /> Add to Cart
+          <FaShoppingCart className="icon" /> Add to Cart
         </button>
       </div>
     </div>

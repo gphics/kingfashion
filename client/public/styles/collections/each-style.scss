@@ -21,7 +21,7 @@
 
         .description {
             margin: 5px 0;
-           
+           font-size: .8em;
         }
     }
 
@@ -30,6 +30,9 @@
         justify-content: space-around;
 
         .btn {
+            &:nth-child(1){
+                background-color: colors.$green;
+            }
             width: max-content;
             padding: 5px 15px;
             text-decoration: none;

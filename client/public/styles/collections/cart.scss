@@ -1,0 +1,88 @@
+@use "../others/colors.scss" as colors;
+
+.cart-page {
+    width: 97%;
+    margin: 5px auto;
+    // background-color: red;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+
+    @media (max-width:760px) {
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+
+        .each-cart-item {
+            width: 97%;
+            max-width: 97%;
+            flex-direction: row;
+            // align-items: flex-start;
+            justify-content: flex-start;
+            margin: 10px auto;
+            border-bottom: 5px solid colors.$purple;
+
+            img {
+                width: 200px;
+                flex: 0 0 auto;
+                height: 200px;
+
+            }
+
+            article {
+                height: 100%;
+                width: 60%;
+                // background-color: yellowgreen;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+
+            }
+        }
+    }
+}
+
+.each-cart-item {
+    width: 30%;
+    margin: 5px auto;
+    max-width: 300px;
+    // background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    text-decoration: none;
+    color: colors.$purple;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    h3 {
+        text-align: center;
+        font-size: .8em;
+        margin: 2px 0;
+    }
+
+    article {
+        margin-top: 5px;
+
+        .cart-btn {
+            font-size: .8em;
+            text-align: center;
+            text-decoration: none;
+            margin: 6px;
+            border: none;
+            background-color: colors.$green;
+            color: colors.$white;
+            padding: 5px 10px;
+
+        }
+
+        .remove {
+            background-color: red;
+        }
+    }
+}

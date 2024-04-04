@@ -196,6 +196,7 @@ function CategoryPage() {
                 </button>{" "}
                 <button
                   onClick={() => {
+                    // @ts-ignore
                     categoryDeleteHandler(elem._id);
                   }}
                   className="category-delete-btn"

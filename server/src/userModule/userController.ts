@@ -26,7 +26,6 @@ export default class userController {
   @Post("/login")
   async login(@Req() req: Request): Promise<returnType> {
     const { password } = req.body
-    console.log(req.body)
     const users = await userModel.find();
     const user = users[0]
     if (password !== user.password) {

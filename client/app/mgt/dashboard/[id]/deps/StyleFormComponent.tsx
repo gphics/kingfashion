@@ -14,7 +14,7 @@ type propsType = {
 };
 function StyleFormComponent({ basicSubmitUrl, imgSubmitUrl }: propsType) {
   const router = useRouter();
-  const [currentForm, setCurrentForm] = useState(2);
+  const [currentForm, setCurrentForm] = useState(1);
   const { currentStyle }: { currentStyle: styleObjectType } = useSelector(
     (state: any) => state.mgtSliceReducer
   );

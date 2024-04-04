@@ -6,7 +6,9 @@ import { CiMenuBurger } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import cookieStorage from "@/utils/cookieStorage";
 function NavigationComponent() {
+  const auth = cookieStorage.getUser()
   // creating each link type
   type linkArrType = {
     name: string;
@@ -29,7 +31,7 @@ function NavigationComponent() {
   // getting the current path
   const activeLink = usePathname();
   const mgtState: boolean = activeLink.includes("/mgt");
-  if (mgtState) {
+  if (auth) {
     linkArr = [...mgtLinkArr, ...linkArr];
   }
   const [navState, setNavState] = useState(false);

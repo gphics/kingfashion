@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
   {
-    fullname: String,
-    password: String,
-    email: String,
-    contact: Number,
+    fullname: { type: String, default: "" },
+    password: { type: String, default: "" },
+    email: { type: String, default: "" },
+    contact: { type: Number, default: 0},
     img: { url: String, public_id: String },
   },
   { timestamps: true },

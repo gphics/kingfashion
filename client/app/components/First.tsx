@@ -18,19 +18,20 @@ function First() {
     const first = await fetch("/components");
     const second = await first.json();
 
-    const third = second.data.slice(0, 3);
-
-    const payload: galleryObjectType[] = third.map(
-      ({ name, _id, description, price, images }: styleObjectType) => {
-        return {
+    const payload: any[] = [];
+    second.data.forEach((elem: styleObjectType, i: number) => {
+      if (elem.images[0]?.secure_url && payload.length < 4) {
+        const { name, price, description, _id: id, images } = elem;
+        const obj = {
           name,
-          description,
           price,
-          id: _id,
+          description,
+          id,
           imgSrc: images[0].secure_url,
         };
+        payload.push(obj);
       }
-    );
+    });
 
     dispatch(addRecentStyles(payload));
   }

@@ -54,7 +54,13 @@ export default class categoryController {
     if (!name) {
       throw new HttpException("name must be provided", 400);
     }
-
+    const isExist = await categoryModel.findOne({ name });
+    if (isExist) {
+      throw new HttpException(
+        `category with the name ${name} already exists`,
+        400,
+      );
+    }
     const updated = await categoryModel.findByIdAndUpdate(
       id,
       { name },

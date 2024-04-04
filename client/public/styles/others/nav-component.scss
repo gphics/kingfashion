@@ -50,8 +50,7 @@
         @media (max-width:760px) {
             z-index: 9999;
             top: 50px;
-            height: 50vh;
-            ;
+            height: 70vh;
             position: fixed;
             flex-direction: column;
             width: 100%;
@@ -59,7 +58,7 @@
             background-color: #EFEFEF;
 
             border-bottom: 2px solid colors.$purple;
-            border-top: 2px solid colors.$purple;
+            // border-top: 2px solid colors.$purple;
 
             &.hide {
                 top: -100%;

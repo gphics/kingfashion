@@ -1,5 +1,6 @@
 @use "./sliding-gallery-component.scss";
 @use "../others/colors.scss" as colors;
+@use "../others/btnStyle.scss" as btn;
 
 .each-style-info {
     margin: 5px auto;
@@ -21,7 +22,7 @@
 
         .description {
             margin: 5px 0;
-           font-size: .8em;
+            font-size: .8em;
         }
     }
 
@@ -30,23 +31,22 @@
         justify-content: space-around;
 
         .btn {
-            &:nth-child(1){
+            @include btn.btnStyle() {
+                justify-content: space-between;
+                display: flex;
+                align-items: center;
+            }
+
+            ;
+
+            &:nth-child(1) {
                 background-color: colors.$green;
             }
-            width: max-content;
-            padding: 5px 15px;
-            text-decoration: none;
-            // text-align: center;
-            justify-content: space-between;
-            display: flex;
-            align-items: center;
-            color: colors.$white;
-            background-color: colors.$purple;
-            border: none;
-            .icon{
+            .icon {
                 margin-right: 5px;
             }
-            &:hover{
+
+            &:hover {
                 transform: scale(1.04);
                 cursor: pointer;
             }

@@ -9,3 +9,4 @@ import FileValidatorService from "src/config/FileValidatorService";
   providers: [FileValidatorService]
 })
 export default class userModule { }
+ 

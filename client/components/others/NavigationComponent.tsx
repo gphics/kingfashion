@@ -13,19 +13,30 @@ function NavigationComponent() {
     href: string;
   };
   // links array
-  const linkArr: linkArrType[] = [
+  let linkArr: linkArrType[] = [
     { name: "Home", href: "/" },
     { name: "Collections", href: "/collections" },
     // { name: "Contact", href: "/contact" },
     { name: "Cart", href: "/cart" },
   ];
+  const mgtLinkArr: linkArrType[] = [
+    { name: "Dashboard", href: "/mgt/dashboard" },
+    { name: "login", href: "/mgt" },
+    { name: "categories", href: "/mgt/categories" },
+    { name: "profile", href: "/mgt/profile" },
+    { name: "logout", href: "/mgt/logout" },
+  ];
   // getting the current path
   const activeLink = usePathname();
+  const mgtState: boolean = activeLink.includes("/mgt");
+  if (mgtState) {
+    linkArr = [...mgtLinkArr, ...linkArr];
+  }
   const [navState, setNavState] = useState(false);
   // toggling nav menu
   function btnClickHandler() {
     const elem = document.querySelector(".nav-link-holder");
-    elem?.classList.toggle("hide")
+    elem?.classList.toggle("hide");
     setNavState((prev) => !prev);
   }
   return (

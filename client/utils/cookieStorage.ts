@@ -38,6 +38,18 @@ class CookieStorage {
         const second: string[] = first ? JSON.parse(first) : []
         return second
     }
+    addUser(id: string) {
+        Cookies.set("mgt", id, this.options
+        )
+    }
+    removeUser(id: string) {
+        Cookies.remove("mgt")
+    }
+    getUser() {
+        const id = Cookies.get("mgt")
+        return id
+    }
+
 }
 
 const cookieStorage = new CookieStorage()

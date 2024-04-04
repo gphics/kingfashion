@@ -31,7 +31,9 @@ function EachCollections() {
   useEffect(() => {
     getStyles();
   }, [id]);
-  const imgArr: string[] = currentStyle.images.map((elem) => elem.secure_url);
+  const imgArr: string[] = currentStyle.images.length
+    ? currentStyle.images.map((elem) => elem.secure_url)
+    : [];
   if (!currentStyle.name) {
     return (
       <main>

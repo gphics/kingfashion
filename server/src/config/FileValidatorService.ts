@@ -18,6 +18,7 @@ export default class FileValidatorService {
   mimetypeValidator(mimetype: string): boolean {
     if (
       mimetype !== "image/jpeg" &&
+      mimetype !== "image/svg" &&
       mimetype !== "image/jpg" &&
       mimetype !== "image/webp" &&
       mimetype !== "image/gif" &&

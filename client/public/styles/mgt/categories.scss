@@ -1,0 +1,160 @@
+@use "../others/btnStyle.scss" as btn;
+@use "../others/colors.scss" as colors;
+
+.category-list-page {
+    display: flex;
+    flex-direction: column;
+    margin: 5px auto;
+    width: 98%;
+
+    header {
+        margin: 5px 0;
+
+        h3 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+
+            .create-toggle-btn {
+                @include btn.btnStyle()
+            }
+
+            form {
+                width: 70%;
+                flex: 1 1 auto;
+                margin-left: 2%;
+                display: flex;
+                justify-content: flex-end;
+
+                input {
+                    height: 100%;
+                    border: none;
+                    color: colors.$white;
+                    background-color: colors.$purple;
+                    width: 80%;
+                    max-width: 350px;
+                    padding-left: 10px;
+
+                    &:focus {
+                        outline: none;
+                        background-color: colors.$black;
+                    }
+                }
+
+                button {
+                    height: 100%;
+                    width: 30px;
+                    background-color: colors.$purple;
+                    outline: none;
+                    border: none;
+                    color: colors.$white;
+                }
+            }
+        }
+    }
+
+    .category-list {
+        display: flex;
+        flex-direction: column;
+
+        .each-category {
+            display: flex;
+            margin: 5px 0;
+            width: 100%;
+            justify-content: space-between;
+
+            h4 {
+                width: 70%;
+                text-transform: lowercase;
+            }
+
+            button {
+                background-color: colors.$green;
+                border: none;
+                width: 30px;
+                height: 35px;
+                color: colors.$white;
+                cursor: pointer;
+                text-align: center;
+
+                &:hover {
+                    transform: scale(1.08);
+                }
+
+                &.category-delete-btn {
+                    background-color: red;
+                }
+
+                .icon {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+
+    .category-create {
+        display: flex;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        background-color: colors.$overlay;
+        height: 100vh;
+        width: 100vw;
+
+        form {
+            background-color: red;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 45%;
+            max-width: 400px;
+            height: 350px;
+            background-color: colors.$purple;
+
+            label {
+                width: 70%;
+                text-transform: capitalize;
+            }
+
+            input {
+                height: 35px;
+                margin: 10px 0;
+                border: none;
+                color: colors.$white;
+                background-color: colors.$black;
+                width: 70%;
+                padding-left: 10px;
+
+                &:focus {
+                    outline: none;
+
+                }
+            }
+
+            button {
+
+
+                outline: none;
+                border: none;
+
+
+                @include btn.btnStyle() {
+                    background-color: colors.$white;
+                    color: colors.$purple;
+                    &:hover{
+                        color:colors.$white;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,10 +2,10 @@ import { resultType, styleObjectType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaNairaSign } from "react-icons/fa6";
-
+import DefaultImage from "../../public/images/OTHERS/default-img.png"
 
 async function getStyles(): Promise<resultType> {
-  const first = await fetch(`${process.env.SERVER_URL}/styles`);
+  const first = await fetch(`${process.env.SERVER_URL}/styles`, {cache:"no-cache"});
   const second = await first.json();
   return second;
 }
@@ -34,7 +34,7 @@ async function CollectionsPage() {
 }
 
 function Each({ style }: { style: styleObjectType }) {
-  const imgSrc = style.images[0].secure_url;
+  const imgSrc = style.images[0]?.secure_url || DefaultImage;
   const name =
     style.name.length > 30 ? `${style.name.slice(0, 30)}...` : style.name;
   const price = style.price;

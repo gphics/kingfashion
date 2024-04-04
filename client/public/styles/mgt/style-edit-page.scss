@@ -1,0 +1,137 @@
+@use "../others/colors.scss" as colors;
+@use "../others/btnStyle.scss" as btn;
+
+.edit-page {
+    margin: 5px auto;
+    width: 97%;
+
+}
+
+.style-form-component {
+    .heading-info {
+        text-align: center;
+        color: colors.$purple;
+        margin: 5px 0;
+    }
+
+    .style-info-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .basic {
+            display: flex;
+            flex-direction: column;
+
+            .each {
+                margin: 5px 0;
+                display: flex;
+                height: 70px;
+                flex-direction: column;
+                justify-content: space-around;
+
+                &.desc {
+                    height: 200px;
+                }
+
+                label {
+                    text-transform: capitalize;
+                    color: colors.$purple;
+                    font-size: .9em;
+                }
+
+                input,
+                textarea {
+                    height: 60%;
+                    width: 90%;
+                    max-width: 300px;
+                    padding-left: 5px;
+                    border: none;
+                    background-color: colors.$purple;
+                    color: colors.$white;
+
+                    &:focus {
+                        outline: none;
+                        background-color: colors.$black;
+                    }
+                }
+
+                textarea {
+                    padding-top: 5px;
+                    max-width: 450px;
+                    height: 80%;
+                }
+            }
+        }
+
+        .categories-section {
+            display: flex;
+            flex-direction: column;
+            color: colors.$purple;
+            margin: 5px 0;
+
+            select {
+                margin: 5px 0;
+                width: 50%;
+                max-width: 350px;
+                height: 40px;
+                padding: 0 5px;
+                border: none;
+                background-color: colors.$purple;
+                color: colors.$white;
+
+                &:focus {
+                    outline: none;
+                    background-color: colors.$black;
+                }
+
+                option {
+                    height: 30px;
+                }
+            }
+
+            .category-display {
+                h5 {
+                    height: 30px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin: 2px 0;
+                    width: 150px;
+                    text-transform: capitalize;
+                    // background-color: red;
+
+                    .icon {
+                        margin: 3px 0 0px 5px;
+                        color: red;
+                        cursor: pointer;
+
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+
+        .submit-btn {
+            @include btn.btnStyle() {
+                align-self: center;
+            }
+        }
+    }
+
+    .current-form-control {
+        margin: 5px auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        button {
+            @include btn.btnStyle() {
+                margin: 5px 10%
+            }
+        }
+    }
+}

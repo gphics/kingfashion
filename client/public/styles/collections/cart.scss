@@ -1,4 +1,5 @@
 @use "../others/colors.scss" as colors;
+@use "../others/btnStyle.scss" as btn;
 
 .cart-page {
     width: 97%;
@@ -70,15 +71,11 @@
         margin-top: 5px;
 
         .cart-btn {
-            font-size: .8em;
-            text-align: center;
-            text-decoration: none;
-            margin: 6px;
-            border: none;
-            background-color: colors.$green;
-            color: colors.$white;
-            padding: 5px 10px;
-
+            @include btn.btnStyle() {
+                font-size: .8em;
+                margin: 6px;
+                background-color: colors.$green;
+            }
         }
 
         .remove {

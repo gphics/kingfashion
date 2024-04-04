@@ -1,0 +1,51 @@
+@use "../others/colors.scss" as colors;
+
+.mgt-login-page {
+    background-color: colors.$purple;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+        width: 90%;
+        max-width: 350px;
+        height: 50%;
+        background-color: colors.$white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            font-weight: 700;
+            margin: 10px 0;
+
+        }
+
+        input {
+            text-align: center;
+            width: 70%;
+            height: 30px;
+            margin: 10px 0;
+            border: none;
+            background-color: colors.$purple;
+            color: colors.$white;
+            &:focus{
+                outline: none;
+            }
+        }
+
+        button {
+            border: none;
+            background-color: colors.$purple;
+            color: colors.$white;
+            padding:5px 40px;
+            text-transform: capitalize;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.02);
+            }
+        }
+    }
+}

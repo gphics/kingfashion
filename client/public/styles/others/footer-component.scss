@@ -18,10 +18,10 @@
 
     p {
         // margin:5px 0;
-        height: 30px;
+        height: 20px;
         font-size: .9em;
         color: colors.$white;
-
+        // background-color: red;
         @media (max-width:760px) {
             font-size: .7em;
         }
@@ -33,10 +33,11 @@
         height: 30px;
         display: flex;
         justify-content: space-between;
-        width: 50px;
-
+        width: 60px;
+        padding: 5px;
+        // background-color: red;
         .icon {
-
+            display: block;
             transform: scale(1.5);
             color: colors.$white;
 

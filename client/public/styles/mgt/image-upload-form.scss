@@ -1,0 +1,63 @@
+@use "../others/btnStyle.scss" as btn;
+@use "../others/colors.scss" as colors;
+
+.style-image-form {
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    .input-form-holder {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        color: colors.$purple;
+
+        label {
+            margin: 5px 0;
+            ;
+        }
+    }
+
+    .image-load-list {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+
+        article {
+            display: flex;
+            flex-direction: column;
+            height: 250px;
+            justify-content: space-around;
+            align-items: center;
+            margin: 10px 5px;
+
+            .icon {
+                margin: 2px 2px 0 0;
+                transform: scale(1.4);
+                padding: 4px;
+                border-radius: 100%;
+                background-color: colors.$purple;
+                color: colors.$white;
+                cursor: pointer;
+                width: 25px;
+                height: 25px;
+
+            }
+
+            img {
+                &.active {
+                    border: 2px solid colors.$purple;
+                }
+            }
+        }
+
+        @media (max-width:760px) {
+            flex-flow: column nowrap;
+
+        }
+    }
+
+    .img-uploader-submit-btn{
+        @include btn.btnStyle();
+        margin: 10px auto;
+    }
+}

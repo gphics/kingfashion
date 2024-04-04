@@ -15,11 +15,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider store={reduxStore}>
-        <ToastContainer position="top-left"  theme="dark"/>
+        <ToastContainer position="top-center"  theme="dark"/>
             <NavigationComponent />
             {children}
             <FooterComponent />
-         
+    
         </Provider>
       </body>
     </html>

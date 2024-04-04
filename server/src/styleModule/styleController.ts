@@ -40,18 +40,25 @@ export default class styleController {
 
   @Post("/create")
   async create(@Req() req: Request): Promise<returnType> {
-    const { price, description, categories, name, images } = req.body;
-    if (!price || !description || !name || !categories) {
-      throw new HttpException("all fields must be supplied", 400);
+    try {
+      const { price, description, categories, name, images } = req.body;
+      if (!price || !description || !name || !categories) {
+        throw new HttpException("all fields must be supplied", 400);
+      }
+      console.log(categories)
+      await styleModel.create({
+        name,
+        description,
+        categories,
+        price,
+        images
+      });
+      return { err: null, response: { message: "style created" } };
+
+    } catch (error) {
+      console.log(error)
     }
-    await styleModel.create({
-      name,
-      description,
-      categories,
-      price,
-      images
-    });
-    return { err: null, response: { message: "style created" } };
+
   }
 
   @UseInterceptors(FileInterceptor("file"))
@@ -62,7 +69,7 @@ export default class styleController {
   ): Promise<returnType> {
     try {
       const { style, image } = req.query;
-      console.log(style, image);
+      console.log(style, image, file);
 
       if (!style || !image) {
         throw new HttpException("style id and img id must be provided", 404);
@@ -102,49 +109,57 @@ export default class styleController {
     @Req() req: Request,
     @UploadedFiles() files: Express.Multer.File[],
   ): Promise<returnType> {
-    const { style: id } = req.query;
-    const { err } = this.FileValidatorService.compoundValidation(files);
-    if (err) {
-      throw new HttpException(err, 400);
+    try {
+      const { style: id } = req.query;
+      const { err } = this.FileValidatorService.compoundValidation(files);
+      if (err) {
+        throw new HttpException(err, 400);
+      }
+      const filePaths = files.map((elem) => elem.path);
+      const filePromises = filePaths.map(
+        async (elem) =>
+          await configuredCloduinary.uploader.upload(elem, {
+            folder: "kingfashion/styles",
+          }),
+      );
+      const allSettled = await Promise.allSettled(filePromises);
+      if (allSettled) {
+        await this.FileValidatorService.cleanUploadDir();
+        const images = this.FileValidatorService.getImgInfos(allSettled);
+        const fetchedStyle = await styleModel.findById(id);
+        images.forEach((item) => fetchedStyle.images.push(item));
+        await fetchedStyle.save();
+        return { err: null, response: { message: "images uploaded" } };
+      }
+    } catch (error) {
+      throw new HttpException(error.message, 400)
     }
-    const filePaths = files.map((elem) => elem.path);
-    const filePromises = filePaths.map(
-      async (elem) =>
-        await configuredCloduinary.uploader.upload(elem, {
-          folder: "kingfashion/styles",
-        }),
-    );
-    const allSettled = await Promise.allSettled(filePromises);
-    if (allSettled) {
-      await this.FileValidatorService.cleanUploadDir();
-      const images = this.FileValidatorService.getImgInfos(allSettled);
-      const fetchedStyle = await styleModel.findById(id);
-      images.forEach((item) => fetchedStyle.images.push(item));
-      await fetchedStyle.save();
-      return { err: null, response: { message: "images uploaded" } };
-    }
+
   }
 
   @Delete("/delete-image")
   async deleteImage(@Req() req: Request): Promise<returnType> {
     const { image, style } = req.query;
+    try {
+      const fetchedStyle = await styleModel.findById(style);
 
-    const fetchedStyle = await styleModel.findById(style);
+      const remImage = fetchedStyle.images.find(
+        (item) => image === item.public_id,
+      );
+      if (!remImage) {
+        throw new HttpException("image not found", 404);
+      }
+      await configuredCloduinary.uploader.destroy(remImage.public_id);
+      const transImages = fetchedStyle.images.filter(
+        (item) => item.public_id !== image,
+      );
+      fetchedStyle.images = transImages;
+      await fetchedStyle.save();
 
-    const remImage = fetchedStyle.images.find(
-      (item) => image === item.public_id,
-    );
-    if (!remImage) {
-      throw new HttpException("image not found", 404);
+      return { err: null, response: { message: "image deleted" } };
+    } catch (error) {
+      throw new HttpException(error.message || "An error occured", 400)
     }
-    await configuredCloduinary.uploader.destroy(remImage.public_id);
-    const transImages = fetchedStyle.images.filter(
-      (item) => item.public_id !== image,
-    );
-    fetchedStyle.images = transImages;
-    await fetchedStyle.save();
-
-    return { err: null, response: { message: "image deleted" } };
   }
 
   @Get("/sort")
@@ -169,16 +184,22 @@ export default class styleController {
   }
   @Put("/:id")
   async update(@Req() req: Request): Promise<returnType> {
-    const { id } = req.params;
-    const updated = await styleModel.findByIdAndUpdate(
-      id,
-      { ...req.body },
-      { new: true },
-    );
-    if (!updated) {
-      throw new HttpException("style does not exist", 404);
+    try {
+      const { id } = req.params;
+
+      const updated = await styleModel.findByIdAndUpdate(
+        id,
+        { ...req.body },
+        { new: true },
+      );
+      if (!updated) {
+        throw new HttpException("style does not exist", 404);
+      }
+      return { err: null, response: { message: "style updated" } };
+    } catch (error) {
+      console.log(error)
     }
-    return { err: null, response: { message: "style updated" } };
+
   }
   @Delete("/:id")
   async delete(@Req() req: Request): Promise<returnType> {

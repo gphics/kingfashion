@@ -17,13 +17,24 @@ import returnType from "src/utils/returnType";
 
 @Controller("user")
 export default class userController {
-  constructor(private FileValidatorService: FileValidatorService) {}
+  constructor(private FileValidatorService: FileValidatorService) { }
   @Get()
   async getUser(): Promise<returnType> {
     const user = await userModel.find();
     return { err: null, response: { data: user[0] } };
   }
-  @Post()
+  @Post("/login")
+  async login(@Req() req: Request): Promise<returnType> {
+    const { password } = req.body
+    console.log(req.body)
+    const users = await userModel.find();
+    const user = users[0]
+    if (password !== user.password) {
+      return { err: "incorrect password", response: null }
+    }
+    return { err: null, response: { data: user._id } }
+  }
+  @Post("/create")
   async createUser(@Req() req: Request): Promise<returnType> {
     const { fullname, password } = req.body;
     const user = await userModel.create({ password, fullname });
@@ -37,7 +48,7 @@ export default class userController {
       { password, fullname, email, contact },
       { new: true },
     );
-    return { err: null, response: { data: user } };
+    return { err: null, response: { message: "profile updated" } };
   }
   @UseInterceptors(FileInterceptor("file"))
   @Post("/img")
@@ -55,10 +66,10 @@ export default class userController {
       file.mimetype,
     );
     if (!isMimetype) {
-      throw new HttpException("invalid file format",400);
+      throw new HttpException("invalid file format", 400);
     }
     if (!isSized) {
-      throw new HttpException("file size must be less than 3MB",400);
+      throw new HttpException("file size must be less than 3MB", 400);
     }
     const upload = await configuredCloduinary.uploader.upload(file.path, {
       folder: "kingfashion/user",

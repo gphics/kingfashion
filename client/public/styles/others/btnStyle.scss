@@ -1,0 +1,20 @@
+@use "./colors.scss" as colors;
+
+@mixin btnStyle() {
+    padding: 7px 20px;
+    width:max-content;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    color: colors.$white;
+    cursor: pointer;
+    background: colors.$black;
+    cursor: pointer;
+    background: colors.$purple;
+
+    &:hover {
+        transform: scale(1.02);
+        background: colors.$lin-grad ;
+    }
+    @content()
+}

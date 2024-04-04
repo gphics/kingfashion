@@ -36,7 +36,9 @@ function EachDashboardStyle() {
     }
   }
   useEffect(() => {
-    getStyle();
+    if (id) {
+      getStyle();
+    }
   }, [id]);
   return isLoading ? (
     <LoadingComponent />

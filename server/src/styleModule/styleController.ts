@@ -171,12 +171,11 @@ export default class styleController {
   async style(@Req() req: Request): Promise<returnType> {
     try {
       const { id } = req.params;
-      console.log("ID FROM THE SERVER", id)
-      const style = await (await styleModel.findById(id)).populate("categories");
-
       if (!id) {
         throw new HttpException("style not found", 404);
       }
+      const style = await styleModel.findById(id).populate("categories");
+      console.log(style)
       return { err: null, response: { data: style } };
     } catch (error) {
       throw new HttpException(error.message, 400)

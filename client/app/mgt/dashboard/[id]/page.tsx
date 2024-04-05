@@ -17,7 +17,12 @@ function EachDashboardStyle() {
   const { id } = useParams();
   async function getStyle() {
     dispatch(updateIsLoading(true));
-    const first = await fetch(`/mgt/dashboard/${id}/deps?id=${id}`);
+    const apiUrl = `/mgt/dashboard/${id}/deps?`;
+    const first = await fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({ id }),
+    });
+
     const second = await first.json();
 
     if (second) {

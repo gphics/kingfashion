@@ -1,3 +1,5 @@
+"use client"
+
 import FooterLogo from "../../public/images/svg/w_logo.svg";
 import Image from "next/image";
 import { FaWhatsappSquare } from "react-icons/fa";

@@ -1,3 +1,4 @@
+"use client"
 import { styleObjectType } from "@/types";
 import { useRouter } from "next/navigation";
 import { FaEdit } from "react-icons/fa";

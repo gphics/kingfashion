@@ -1,10 +1,10 @@
-import { styleObjectType } from "@/types";
 import shortDest from "@/utils/shortDest";
 import { NextRequest } from "next/server";
 
 
 export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
+    console.log("THIS IS THE SEARCHPARAMS: ", searchParams)
     const id = searchParams.values().next().value
     console.log("I AM THE ID", id)
     const first = await fetch(`${process.env.SERVER_URL}/styles/${id}`)

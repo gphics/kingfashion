@@ -171,6 +171,7 @@ export default class styleController {
   async style(@Req() req: Request): Promise<returnType> {
     try {
       const { id } = req.params;
+      console.log("ID FROM THE SERVER", id)
       const style = await (await styleModel.findById(id)).populate("categories");
 
       if (!id) {

@@ -26,7 +26,7 @@ function NavigationComponent() {
     { name: "login", href: "/mgt" },
     { name: "categories", href: "/mgt/categories" },
     { name: "profile", href: "/mgt/profile" },
-    { name: "logout", href: "/mgt/logout" },
+    // { name: "logout", href: "/mgt/logout" },
   ];
   // getting the current path
   const activeLink = usePathname();

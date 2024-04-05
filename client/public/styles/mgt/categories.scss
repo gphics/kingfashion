@@ -6,7 +6,7 @@
     flex-direction: column;
     margin: 5px auto;
     width: 98%;
-
+    padding-right: 2%;
     header {
         margin: 5px 0;
 
@@ -67,7 +67,7 @@
             margin: 5px 0;
             width: 100%;
             justify-content: space-between;
-
+      
             h4 {
                 width: 70%;
                 text-transform: lowercase;
@@ -150,8 +150,9 @@
                 @include btn.btnStyle() {
                     background-color: colors.$white;
                     color: colors.$purple;
-                    &:hover{
-                        color:colors.$white;
+
+                    &:hover {
+                        color: colors.$white;
                     }
                 }
             }

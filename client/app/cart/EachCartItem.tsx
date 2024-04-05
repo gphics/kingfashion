@@ -49,7 +49,7 @@ function EachCartItem({
           {" "}
           <FaNairaSign /> {price}{" "}
         </h3>
-        <Link className="cart-btn" href={`${whatsappLink}`}>
+        <Link className="cart-btn" href={`/collections/${_id}`}>
           Buy Now
         </Link>
         <button

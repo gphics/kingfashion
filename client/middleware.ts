@@ -37,9 +37,13 @@ export default function middleware(req: NextRequest) {
 
     // for the mgt user to login
 
-    if (!mgt && pathname.includes( "/mgt")) {
-        return NextResponse.redirect(new URL("/mgt", req.url))
-    }
+    // if (!mgt && pathname.includes( "/mgt")) {
+    //     return NextResponse.redirect(new URL("/mgt", req.url))
+    // }
 
 
 }
+
+// if (!mgt && pathname !== "/mgt") {
+//     return NextResponse.redirect(new URL("/mgt", req.url))
+// }

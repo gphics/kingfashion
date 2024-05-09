@@ -34,14 +34,12 @@ export default function middleware(req: NextRequest) {
     if (mgt && pathname === "/mgt") {
         return NextResponse.redirect(new URL("/mgt/dashboard", req.url))
     }
-    // preventing non-mgt user from accessing this route
-    if(!mgt && pathname.includes("/mgt")){
-        return NextResponse.redirect(new URL("/", req.url))
+
+    // for the mgt user to login
+
+    if (!mgt && pathname.includes( "/mgt")) {
+        return NextResponse.redirect(new URL("/mgt", req.url))
     }
-   // I forgot my intention for this code
-    // if (!mgt && pathname !== "/mgt") {
-    //     return NextResponse.redirect(new URL("/mgt", req.url))
-    // }
 
 
 }

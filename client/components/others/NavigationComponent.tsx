@@ -5,17 +5,18 @@ import Image from "next/image";
 import { CiMenuBurger } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cookieStorage from "@/utils/cookieStorage";
 function NavigationComponent() {
-  const auth = cookieStorage.getUser()
+  const auth = cookieStorage.getUser();
+  const [linkArr, setLinkArr] = useState();
   // creating each link type
   type linkArrType = {
     name: string;
     href: string;
   };
   // links array
-  let linkArr: linkArrType[] = [
+  const regLinks: linkArrType[] = [
     { name: "Home", href: "/" },
     { name: "Collections", href: "/collections" },
     // { name: "Contact", href: "/contact" },
@@ -31,9 +32,7 @@ function NavigationComponent() {
   // getting the current path
   const activeLink = usePathname();
   const mgtState: boolean = activeLink.includes("/mgt");
-  if (auth) {
-    linkArr = [...mgtLinkArr, ...linkArr];
-  }
+
   const [navState, setNavState] = useState(false);
   // toggling nav menu
   function btnClickHandler() {
@@ -41,6 +40,15 @@ function NavigationComponent() {
     elem?.classList.toggle("hide");
     setNavState((prev) => !prev);
   }
+  useEffect(() => {
+    if (auth) {
+      // @ts-ignore
+      setLinkArr([...regLinks, ...mgtLinkArr]);
+    } else {
+      // @ts-ignore
+      setLinkArr([...regLinks]);
+    }
+  }, []);
   return (
     <div className="navigation-component">
       <Link href="/" className="logo-holder">

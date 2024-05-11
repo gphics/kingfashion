@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import cookieStorage from "@/utils/cookieStorage";
 function NavigationComponent() {
   const auth = cookieStorage.getUser();
-  const [linkArr, setLinkArr] = useState();
+  
   // creating each link type
   type linkArrType = {
     name: string;
@@ -29,6 +29,7 @@ function NavigationComponent() {
     { name: "profile", href: "/mgt/profile" },
     // { name: "logout", href: "/mgt/logout" },
   ];
+  const [linkArr, setLinkArr] = useState(regLinks);
   // getting the current path
   const activeLink = usePathname();
   const mgtState: boolean = activeLink.includes("/mgt");
